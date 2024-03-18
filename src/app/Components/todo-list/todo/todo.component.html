@@ -1,0 +1,28 @@
+<li class="todo" [appToDoEditing]="isEditing">
+
+    <div class="todo-block">
+      <div class="editing-tools" *ngIf="isEditing">
+        <button type="button" class="btn submit-edited focus-ring mb-1" (click)="submit_editing()"
+        [disabled]="sameTextOrNot">Save</button>
+        <button type="button" class="btn cancel-editing focus-ring-danger" (click)="cancel_editing()">Cancel</button>
+      </div>
+
+      <input type="checkbox" [checked]="todo.checked" (click)="check_uncheck()" *ngIf="!isEditing">
+
+      <label class="todo-name" *ngIf="!isEditing" #task_name (click)="textTransform(task_name)" (dblclick)="edit()"> {{ todo.task }} </label>
+      <textarea class="update-todo shadow-sm rounded-sm" *ngIf="isEditing" #updateTodo
+      (input)="riseArea(updateTodo)">{{ todo.task }}</textarea>
+    </div>
+
+
+    <div class="todo-block">
+      <button type="button" title="Copy" (click)="copy_task_name()">
+        <i class="fa-regular fa-copy"></i>
+      </button>
+
+      <button type="button" title="Delete" (click)="deleteTask()">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+
+</li>

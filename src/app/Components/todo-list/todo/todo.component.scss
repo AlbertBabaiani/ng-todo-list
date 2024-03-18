@@ -1,0 +1,230 @@
+@import '../../../Styles/CustomStyles';
+
+.todo{
+
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding-block: 0.8rem;
+    padding-inline: $px;
+    margin-bottom: 1rem;
+
+    font-weight: 600;
+    color: $black;
+
+    width: 100%;
+
+    box-shadow: inset 0 3px 2px 1px transparent;
+
+    transition: transform 0.5s ease-in, opacity 0.5s, box-shadow 0.3s;
+
+
+    &.selected{
+        box-shadow: inset 0 3px 2px 1px rgba(black, .3);
+
+        .todo-block:first-child{
+            max-width: 100%;
+        }
+
+        .todo-block:last-child{
+            display: none;
+        }
+    }
+
+    &.deleted-todo{
+        opacity: 0.3;
+        transform: translateX(-120%);
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+        height: 2px;
+        background: $blueHSL;
+        opacity: 0.4;
+    }
+
+
+    &:hover{
+        .todo-block:last-child{
+            opacity: 1;
+        }
+
+        input[type="checkbox"]{
+            border: 2px solid $blue;
+        }
+    }
+
+
+
+
+    &-block{
+        display: flex;
+        gap: 1rem;
+        position: relative;
+
+        &:first-child{
+            width: 100%;
+        }
+
+
+
+        .submit-edited,
+        .cancel-editing{
+            width: 100%;
+            height: min-content;
+            padding: 0.3rem 1rem;
+            color: #fff;
+        }       
+        .submit-edited{
+            background: $blue !important;
+        }
+        .cancel-editing{
+            background: rgb(168, 16, 16) !important;
+        }
+
+        input[type = 'checkbox']{
+            margin-block: auto;
+            position: relative;
+            cursor: pointer;
+            appearance: none;
+            flex-shrink: 0;
+            width: 1.2rem;
+            height: 1.2rem;
+
+            transition: border 0.3s ease;
+
+            &:focus{
+                outline: $outline;
+            }
+
+            border-radius: 5px;
+            border: 2px solid $textColor;
+            
+            &:hover{
+                border: 2px solid $blue;
+            }
+
+            &::after{
+                content: '';
+                pointer-events: none;
+                user-select: none;
+
+                position: absolute;
+                top: 60%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-family: "Font Awesome 5 Free";
+                font-size: 0.8rem;
+                font-weight: 900;
+                color: #fff;
+            }
+
+            &:checked{
+                border: 2px solid $blue;
+                background: $blue;
+
+                &::after{
+                    content: '\f00c';
+                }
+
+
+                & ~ .todo-name{
+                    text-decoration: line-through;
+                    text-decoration-thickness: 2px;
+                    text-decoration-color: $blue;
+                    color: $textColor;
+                }
+            }
+        }
+
+        .todo-name,
+        .update-todo{
+            overflow: hidden;
+            width: 100%;
+
+            border: none;
+            outline: none;
+
+            font-size: 1rem;
+        }
+
+        .update-todo{
+            min-height: 2.8rem;
+            max-height: 20rem;
+            padding: 0.6rem;
+
+            overflow: auto;
+        }
+
+
+        .todo-name{
+            max-width: $defaultTextLength;
+            color: $black;
+            text-overflow: ellipsis; /* Show an ellipsis (...) when text overflows */
+            white-space: nowrap;
+            // text-transform: capitalize;
+
+            cursor: pointer;
+            text-align: start;
+            
+            &.expanded{
+                white-space: normal;
+                word-break: break-all;
+            }
+        }
+
+
+
+        &:last-child{
+            transition: opacity 0.3s;
+            opacity: 0.5;
+            
+            button{
+                font-size: 1.1rem;
+                border: none;
+                background: transparent;
+                border-radius: 3px;
+            }
+            
+            & > *{
+                cursor: pointer;
+                opacity: 0.5;
+                transition: opacity 0.3s;
+                
+                &:hover{
+                    opacity: 1;
+                }
+            }
+
+            .fa-copy{
+                color: $textColor;
+            }
+            .fa-trash{
+                color: rgb(226, 9, 9);
+            }
+        }
+    }    
+}
+
+button:focus{
+    outline: $outline;
+}
+
+  
+@include labelWidths;
+
+
+
+@media (width <= 491px) {
+    .todo.selected .todo-block:first-child{
+        flex-direction: column;
+    }
+}

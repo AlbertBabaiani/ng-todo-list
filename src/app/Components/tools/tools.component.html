@@ -1,0 +1,11 @@
+<div class="info-tools">
+    <p>You have <span id="items-quantity">{{ tasks_quantity }}</span>
+      {{ tasks_quantity === 1 ? 'item' : 'items' }}
+    </p>
+
+    <button type="button" *ngIf="completed_tasks"
+      (click)="deleteAllCompletedTasks()"
+      class="clear-completed">
+      Clear completed
+    </button>
+</div>

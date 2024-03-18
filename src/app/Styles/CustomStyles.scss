@@ -1,0 +1,54 @@
+// Colors
+
+$bg-color: #f3f5f6;
+
+$blue: #2f74c0;
+$blueHSL: hsl(211, 50%, 60%);
+$black: #232b2b;
+$textColor: #b0b3b8;
+$gitHub: #4078c0;
+
+$purple: #c471ed;
+$cyan: #12c2e9;
+
+$colorTransition: color 0.2s ease;
+
+$outline: 1.4px solid $blue;
+
+// End Colors
+
+$containerWidth: 44rem;
+
+$px: 1.6rem;
+
+$rounded-sm: 0.4rem;
+
+$defaultTextLength: 30rem;
+
+@mixin activeLabel{
+    top: 0%;
+    left: 7%;
+    background: #fff;
+    color: $blue;
+}
+
+
+
+
+$labelWidthsMap: (
+    700px: 30rem,
+    590px: 24rem,
+    490px: 16rem,
+    360px: 13rem,
+    310px: 10rem
+);
+
+@mixin labelWidths {
+    @each $width, $maxWidth in $labelWidthsMap {
+        @media (max-width: $width) {
+            .todo .todo-block, .todo-name {
+                max-width: $maxWidth;
+            }
+        }
+    }
+}

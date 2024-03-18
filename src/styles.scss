@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'app/Styles/CustomStyles';
+
+
+////////////////////////////////////
+/// Basic styles
+////////////////////////////////////
+
+*, *::after, *::before{
+    padding: 0;
+    margin: 0;
+
+    box-sizing: border-box;
+}
+
+////////////////////////////////////
+/// End Basic styles
+////////////////////////////////////
+
+
+////////////////////////////////////
+/// Custom scroll bar
+////////////////////////////////////
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100vmax;
+    background: $blueHSL;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $blue;
+}
+
+////////////////////////////////////
+/// End Custom scroll bar
+////////////////////////////////////
+
+
+body{
+    padding-top: 4vh;
+    padding-top: 4dvh;
+    background: $bg-color !important;
+
+    height: 100vh;
+    height: 100dvh; // will ovveride
+}
+
+
+*:not(.title)::selection{
+    background:$blue;
+    color: #fff;
+}
+
+*:not(i){
+    font-family: 'Poppins', sans-serif;
+}

@@ -1,0 +1,40 @@
+@import 'Styles/CustomStyles';
+
+.custom-container{
+    background: #fff;
+
+    width: 90%;
+    max-width: $containerWidth;
+    height: auto;
+
+    border-radius: 1rem;
+    margin-inline: auto;
+
+    box-shadow: 0 5px 0 rgba(#d4d6dc, 1);
+
+    padding-top: 1rem;
+    margin-bottom: 2rem;
+
+    overflow: hidden;
+
+    transform: scale(0.3) translateY(6rem);
+    opacity: 0;
+    animation: containerPopUp 0.7s ease-in-out 0s forwards;
+}
+
+
+
+////////////////////////////////////
+/// Animations
+////////////////////////////////////
+
+@keyframes containerPopUp {
+    to{
+        transform: scale(1) translateY(0rem);
+        opacity: 1;
+    }
+}
+
+////////////////////////////////////
+/// End Animations
+////////////////////////////////////

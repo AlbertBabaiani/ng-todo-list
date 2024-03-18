@@ -1,0 +1,11 @@
+<ul>
+    <ng-container *ngFor="let item of todos.slice().reverse()">
+        <app-todo [todo]="item"></app-todo>
+    </ng-container>
+
+    <button type='button'
+        *ngIf="todos_quantity"
+        class='delete-all' #btn (click)="deleteAll(btn)">
+        Delete all
+    </button>
+</ul>

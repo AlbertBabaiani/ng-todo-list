@@ -1,0 +1,152 @@
+@import '../../Styles/CustomStyles';
+
+.custom-container{
+    padding-inline: $px;
+    margin-bottom: 1.8rem;
+
+    width: 100%;
+
+    display: block;
+}
+
+form{
+    width: 100%;
+    position: relative;
+    display: flex;
+
+    div{
+        width: 90%;
+        position: relative;
+    
+
+        & > *{
+            transition: all 0.4s;
+        }
+    
+        label{
+            color: $textColor;
+
+    
+            user-select: none;
+            pointer-events: none;
+    
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            transform: translateY(-50%);
+
+            padding: 0.1rem 0.6rem;
+            border-radius: 100vmax;
+            
+            background: transparent;
+            
+            transition: top 0.3s ease, left 0.3s ease, background 0.2s ease, color 0.2s ease;
+
+            &.active-label{
+                @include activeLabel();
+            }
+
+        }
+
+        input{
+            width: 100%;
+            border: 2px solid #eee;
+            
+            border-top-left-radius: $rounded-sm;
+            border-bottom-left-radius: $rounded-sm;
+
+            height: 2.8rem;
+            padding-inline: 5% 12%;
+            padding-right: 4.6rem;
+            font-size: 1.1rem;
+
+            outline: none;
+
+            // transition: all 0.3s;
+
+            &:focus,
+            &.active-input{
+                border: 2px solid $blue;
+                box-shadow: 0 0 0 2px rgba($blue, 0.3);
+            }
+
+
+            &:focus ~ label{
+                @include activeLabel();
+            }
+        }
+
+        button{
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-50%);
+            
+            border: none;
+            background: transparent;
+            color: $textColor;
+            
+            text-align: center;
+            font-size: 0.9em;
+            cursor: pointer;
+            
+            width: 3rem;
+            
+            &:focus,
+            &:hover{
+                color: $black;
+                border-radius: $rounded-sm;
+            }
+            
+            &:focus{
+                outline: $outline;
+            }
+        }
+    }
+
+    button[type="button"]{
+        cursor: pointer;
+        // width: 10%;
+        width: 4rem;
+
+        border: 2px solid $blue;
+        background: $blue;
+
+        
+        color: #fff;
+        
+        border-top-right-radius: $rounded-sm;
+        border-bottom-right-radius: $rounded-sm;
+        
+        transition: background 0.3s ease, border-color 0.3s ease;
+        
+        &:focus,
+        &:hover{
+            outline: none;
+            background: $blueHSL;
+            border-color:  $blueHSL;
+        }
+    }
+}
+
+@media (width < 400px) {
+    form {
+      flex-direction: column;
+      gap: .7rem;
+
+      div{
+        width: 100%;
+
+        input{
+            border-radius: $rounded-sm;
+        }
+      }
+
+      button[type="button"]{
+        border-radius: $rounded-sm;
+        height: 2.8rem;
+        width: 100%;
+        font-size: 1.1rem;
+      }
+    }
+}

@@ -1,0 +1,13 @@
+<div class="custom-container">
+
+    <form name="form" (ngSubmit)="addTodo()">
+        <div>
+            <input type="text" name="new_todo" [(ngModel)]="search">
+            <label for="new_todo">Add a task</label>
+            <button type='reset'>Clear</button>
+        </div>
+        
+        <button type="button" (click)="addTodo()">Add</button>
+    </form>
+    
+</div>
