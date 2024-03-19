@@ -41,7 +41,6 @@ export class TodoComponent implements OnInit, AfterViewChecked{
     this.service.check_uncheck(this.todo.id)
   }
 
-
   textTransform(label: HTMLLabelElement): void{
     label.classList.toggle('expanded')
   }
@@ -75,8 +74,8 @@ export class TodoComponent implements OnInit, AfterViewChecked{
     }
 
     if(!this.resized){
-      area.style.height = '';
-      area.style.height = (area.scrollHeight + 2) + 'px';
+        area.style.height = '';
+        area.style.height = (area.scrollHeight + 2) + 'px';
     }
   }
 
@@ -97,7 +96,11 @@ export class TodoComponent implements OnInit, AfterViewChecked{
 
   ngAfterViewChecked(): void {
     if (this.isEditing) {
-      this.updateTodoInput.nativeElement.focus();
+      // this.updateTodoInput.nativeElement.focus();
+
+      const inputElement = this.updateTodoInput.nativeElement;
+      inputElement.focus();
+      inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
     }
   }
 }

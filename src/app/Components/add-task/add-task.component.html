@@ -2,9 +2,11 @@
 
     <form name="form" (ngSubmit)="addTodo()">
         <div>
-            <input type="text" name="new_todo" [(ngModel)]="search">
-            <label for="new_todo">Add a task</label>
-            <button type='reset'>Clear</button>
+            <input type="text" name="new_todo" [(ngModel)]="search" #input
+                
+                (blur)="labelAnimation()">
+            <label for="new_todo" #label>Add a task</label>
+            <button type='reset' (click)="search=''; labelAnimation()">Clear</button>
         </div>
         
         <button type="button" (click)="addTodo()">Add</button>
