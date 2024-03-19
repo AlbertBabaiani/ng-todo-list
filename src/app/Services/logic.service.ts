@@ -30,9 +30,9 @@ export class LogicService implements OnDestroy{
   
 
   private _todos: Todo[] = [
-    new Todo(0, 'a', false),
-    new Todo(1, 'b', true),
-    new Todo(2, 'c', false),
+    new Todo(0, 'a', false, new Date()),
+    new Todo(1, 'b', true, new Date()),
+    new Todo(2, 'c', false, new Date()),
   ]
 
   todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>(this._todos)
@@ -75,7 +75,7 @@ export class LogicService implements OnDestroy{
 
 
   addNewTodo(new_todo: string): void{
-    this._todos.push(new Todo(this._todos.length, new_todo, false))
+    this._todos.push(new Todo(this._todos.length, new_todo, false, new Date()))
 
     this.todos_quantity()
     this.filter_todos(this.filter_type)
@@ -97,16 +97,22 @@ export class LogicService implements OnDestroy{
     this.isEditing$.next(index)
   }
 
-  async edit_todo(new_task: string, index: number): Promise<boolean>{
+  async edit_todo(new_task: string, index: number, new_date: Date): Promise<boolean>{
     const response = await this.sweetAlert.inserting_add_confirmation(new_task.length)
 
     if(response){
       if(new_task.length){
-        const todoToUpdate = this._todos.find(todo => todo.id === index);
+        const todoToUpdate = this._todos.map((todo: Todo) => {
+          if(todo.id === index){
+            return todo.task = new_task, todo.date = new_date
+          }
+          else return todo
+        });
+        // const todoToUpdate = this._todos.find(todo => {todo.id === index);
 
-        if (todoToUpdate) {
-          todoToUpdate.task = new_task;
-        }
+        // if (todoToUpdate) {
+        //   todoToUpdate.task = new_task;
+        // }
       }
       else{
         this._todos = this._todos.filter((todo: Todo) => todo.id !== index);

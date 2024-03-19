@@ -13,16 +13,18 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
   private service: LogicService = inject(LogicService)
   private sweetAlert: SweetAlert2PopUpsService = inject(SweetAlert2PopUpsService)
 
+
+  @ViewChild('updateTodo', { static: false }) updateTodoInput!: ElementRef
+
+  @Input() todo!: Todo
+
   isEditing: boolean = false
+  editingText_length: number = 0
   private isEditing_subscription!: Subscription
 
   sameTextOrNot: boolean = true
 
   resized: boolean = false
-
-  @ViewChild('updateTodo', { static: false }) updateTodoInput!: ElementRef
-
-  @Input() todo!: Todo
 
 
   ngOnInit(): void {
@@ -48,11 +50,12 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
 
   edit(): void{
     this.isEditing = true
+    this.editingText_length = this.todo.task.length
     this.service.choose_todo_to_edit(this.todo.id)
   }
 
   async submit_editing(): Promise<void>{
-    const response = await this.service.edit_todo(this.updateTodoInput.nativeElement.value.trim(), this.todo.id)
+    const response = await this.service.edit_todo(this.updateTodoInput.nativeElement.value.trim(), this.todo.id, this.todo.date)
 
     if(response){ 
       this.isEditing = false
@@ -66,6 +69,8 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
   }
 
   riseArea(area: HTMLTextAreaElement): void{
+    this.editingText_length = area.value.trim().length
+
     if(area.value.trim() !== this.todo.task){
       this.sameTextOrNot = false
     }
@@ -74,8 +79,8 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     }
 
     if(!this.resized){
-        area.style.height = '';
-        area.style.height = (area.scrollHeight + 2) + 'px';
+      area.style.height = '';
+      area.style.height = (area.scrollHeight + 2) + 'px';
     }
   }
 
@@ -102,9 +107,11 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     if (this.isEditing) {
       // this.updateTodoInput.nativeElement.focus();
 
-      const inputElement = this.updateTodoInput.nativeElement;
-      inputElement.focus();
-      inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
+      if(this.updateTodoInput){
+        const inputElement = this.updateTodoInput.nativeElement;
+        inputElement.focus();
+        inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
+      }
     }
   }
 

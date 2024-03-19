@@ -3,6 +3,7 @@ export class Todo{
         private _id: number = 0,
         private _task: string = '',
         private _checked: boolean = false,
+        private _date: Date
     ){}
 
     set id(set_id: number){
@@ -24,5 +25,13 @@ export class Todo{
     }
     get checked(): boolean{
         return this._checked
+    }
+
+    set date(set_date: Date){
+        this._date = set_date
+    }
+
+    get date(): Date{
+        return this._date
     }
 }
