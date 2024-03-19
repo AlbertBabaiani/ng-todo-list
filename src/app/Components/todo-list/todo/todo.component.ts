@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Todo } from 'src/app/Models/ToDo';
 import { LogicService } from 'src/app/Services/logic.service';
@@ -9,7 +9,7 @@ import { SweetAlert2PopUpsService } from 'src/app/Services/sweet-alert2-pop-ups.
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit, AfterViewChecked{
+export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
   private service: LogicService = inject(LogicService)
   private sweetAlert: SweetAlert2PopUpsService = inject(SweetAlert2PopUpsService)
 
@@ -79,7 +79,7 @@ export class TodoComponent implements OnInit, AfterViewChecked{
     }
   }
 
-  copy_task_name(): void{
+  copy_task_name(btn: HTMLButtonElement): void{
     navigator.clipboard.writeText(this.todo.task)
     .then(() => {
       this.sweetAlert.copy_message(this.todo.task)
@@ -87,11 +87,15 @@ export class TodoComponent implements OnInit, AfterViewChecked{
     .catch(err => {
       this.sweetAlert.copy_message(this.todo.task, true)
     });
+
+    btn.blur()
   }
 
-  deleteTask(): void{
+  deleteTask(btn: HTMLButtonElement): void{
     this.service.deleteTask(this.todo.task, this.todo.id)
     this.isEditing_subscription.unsubscribe()
+
+    btn.blur()
   }
 
   ngAfterViewChecked(): void {
@@ -101,6 +105,12 @@ export class TodoComponent implements OnInit, AfterViewChecked{
       const inputElement = this.updateTodoInput.nativeElement;
       inputElement.focus();
       inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
+    }
+  }
+
+  ngOnDestroy(): void {
+    if(this.isEditing_subscription){
+      this.isEditing_subscription.unsubscribe()
     }
   }
 }

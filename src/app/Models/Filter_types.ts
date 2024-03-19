@@ -1,0 +1,1 @@
+export type Filters = 'All' | 'Completed' | 'Uncompleted'

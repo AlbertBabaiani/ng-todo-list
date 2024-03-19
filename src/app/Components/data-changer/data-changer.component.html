@@ -1,0 +1,18 @@
+<div class="custom-container" *ngIf="all_todos_quantity">
+    <div class="tool-box">
+        <label for="select" class="fs-5 me-2">Filter</label>
+        <select class="form-select" aria-label="Default select example" id="select" [(ngModel)]="filter_type" (change)="change_filter_type()">
+
+            <option value="All">{{ all_todos_quantity }}.  All</option>
+            <option value="Completed">{{ completed_todos_quantity }}.  Completed</option>
+            <option value="Uncompleted">{{ uncompleted_todos_quantity }}.  Uncompleted</option>
+
+        </select>
+    </div>
+
+    <button type="button" *ngIf="show_delete_completed_button" #btn
+      (click)="deleteAllCompletedTasks(btn)"
+      class="clear-completed">
+      Clear completed
+    </button>
+</div>
