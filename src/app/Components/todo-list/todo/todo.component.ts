@@ -50,12 +50,14 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
 
   edit(): void{
     this.isEditing = true
+    this.sameTextOrNot = true
+
     this.editingText_length = this.todo.task.length
     this.service.choose_todo_to_edit(this.todo.id)
   }
 
   async submit_editing(): Promise<void>{
-    const response = await this.service.edit_todo(this.updateTodoInput.nativeElement.value.trim(), this.todo.id, this.todo.date)
+    const response = await this.service.edit_todo(this.updateTodoInput.nativeElement.value.trim(), this.todo.id, new Date())
 
     if(response){ 
       this.isEditing = false
@@ -65,7 +67,7 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
 
   cancel_editing(): void{
     this.isEditing = false
-    this.sameTextOrNot = false
+    this.sameTextOrNot = true
   }
 
   riseArea(area: HTMLTextAreaElement): void{

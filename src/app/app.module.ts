@@ -16,6 +16,7 @@ import { TodoListComponent } from './Components/todo-list/todo-list.component';
 import { TodoComponent } from './Components/todo-list/todo/todo.component';
 import { ToDoEditingDirective } from './Directives/to-do-editing.directive';
 import { DataChangerComponent } from './Components/data-changer/data-changer.component';
+import { ArrowsComponent } from './Components/arrows/arrows.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DataChangerComponent } from './Components/data-changer/data-changer.com
      TodoComponent,
      ToDoEditingDirective,
      DataChangerComponent,
+     ArrowsComponent,
   ],
   imports: [
     FormsModule,

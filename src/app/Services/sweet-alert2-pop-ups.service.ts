@@ -62,6 +62,14 @@ export class SweetAlert2PopUpsService {
     )
   }
 
+  adding_new_message(): void{
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "This task already exists in the list!",
+    });
+  }
+
   copy_message(task_name: string): void
   copy_message(task_name: string, error: true): void
   copy_message(task_name: string, error?: true): void{

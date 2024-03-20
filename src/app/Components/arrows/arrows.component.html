@@ -1,0 +1,11 @@
+<div class="arrows-container">
+    <div class="arrows">
+        <span class="arrow-up mb-2 rounded " title="Scroll up" 
+        (click)="scrollToTop()" [ngClass]="{'show-arrow': showScrollTopButton}"></span>
+    </div>
+
+    <div class="arrows">
+        <span class="arrow-down rounded" title="Scroll down" 
+        (click)="scrollToBottom()" [ngClass]="{'show-arrow': showScrollBottomButton}"></span>
+    </div>
+</div>

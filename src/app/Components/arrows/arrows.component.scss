@@ -1,0 +1,63 @@
+@import '../../Styles/CustomStyles';
+
+.arrows-container{
+    position: fixed;
+
+    bottom: 1rem;
+    right: 1rem;
+
+    z-index: 100;
+}
+
+.arrows{
+
+    span{
+        cursor: pointer;
+        background: $blue;
+        color: #fff;
+
+        opacity: 0;
+        user-select: none;
+        pointer-events: none;
+
+
+        width: 2.5rem;
+
+        aspect-ratio: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transition: background 0.3s, opacity 0.3s;
+        outline: none;
+
+        &:hover,
+        &:focus{
+            background: $blueHSL;
+        }
+
+
+        // Arrows
+        
+        &::before{
+            font-size: 1.3rem;
+        }
+        
+        &.arrow-up::before{
+            content: '▲';
+        }
+
+        &.arrow-down::before{
+            content: '▼';
+        }
+
+        // End Arrows
+
+        &.show-arrow{
+            opacity: 1;
+            user-select: auto;
+            pointer-events: all;
+        }
+    }
+}

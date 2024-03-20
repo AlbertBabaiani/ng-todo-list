@@ -18,8 +18,11 @@ export class AddTaskComponent implements AfterViewInit{
     const trimed_searched: string = this.search.trim()
 
     if(trimed_searched){
-      this.service.addNewTodo(trimed_searched)
-      this.search = ''
+      const respone =  this.service.addNewTodo(trimed_searched)
+
+      if(respone){
+        this.search = ''
+      }
     }
   }
   

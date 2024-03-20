@@ -14,11 +14,15 @@ export class LogicService implements OnDestroy{
   private routing: RoutingService = inject(RoutingService)
   private activated_route: ActivatedRoute = inject(ActivatedRoute)
 
+  private local_storage_key: string = 'ng-user-list'
+
   private activated_route_subscription!: Subscription;
 
   private filter_type: string | null | undefined = 'All'
 
-  constructor() { 
+  constructor() {
+    this.load_local_storage()
+
     this.activated_route_subscription = this.activated_route.queryParamMap.subscribe({
       next: (query: ParamMap) => {
         this.filter_type = query.get('Filter')
@@ -30,14 +34,28 @@ export class LogicService implements OnDestroy{
   
 
   private _todos: Todo[] = [
-    new Todo(0, 'a', false, new Date()),
-    new Todo(1, 'b', true, new Date()),
-    new Todo(2, 'c', false, new Date()),
   ]
 
   todos$: BehaviorSubject<Todo[]> = new BehaviorSubject<Todo[]>(this._todos)
   isEditing$: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null)
   todos_quantity$: BehaviorSubject<[number, number, number]> = new BehaviorSubject<[number, number, number]>(this.calculate_todos_quantity())
+
+  private load_local_storage(): void{
+    const local_storage = localStorage.getItem(this.local_storage_key)
+
+    if(local_storage){
+      this._todos = JSON.parse(local_storage)
+    }
+    else{
+      this._todos = []
+    }
+
+    this.todos_quantity()
+  }
+
+  private save_to_local_storage(): void{
+    localStorage.setItem(this.local_storage_key, JSON.stringify(this._todos))
+  }
 
   private calculate_todos_quantity(): [number, number, number]{
     const all = this._todos.length
@@ -72,13 +90,31 @@ export class LogicService implements OnDestroy{
     }
   }
 
+  private check_task_name(task_name: string): boolean{
+    if(this._todos.find((todo: Todo) => todo.task === task_name) === undefined){
+      return true
+    }
+    else{
+      return false
+    }
+  }
 
+  addNewTodo(new_todo: string): boolean{
+    const response = this.check_task_name(new_todo)
 
-  addNewTodo(new_todo: string): void{
-    this._todos.push(new Todo(this._todos.length, new_todo, false, new Date()))
+    if(response){
+      this._todos.push(new Todo(this._todos.length, new_todo, false, new Date()))
+      
+      this.todos_quantity()
+      this.filter_todos(this.filter_type)
+      this.save_to_local_storage()
 
-    this.todos_quantity()
-    this.filter_todos(this.filter_type)
+      return true
+    }
+    else{
+      this.sweetAlert.adding_new_message()
+      return false
+    }
   }
 
   async deleteTask(todo_name: string, todo_index: number): Promise<void>{
@@ -89,9 +125,9 @@ export class LogicService implements OnDestroy{
       this.reArange()
       this.todos_quantity()
       this.filter_todos(this.filter_type)
+      this.save_to_local_storage()
     }
   }
-
 
   choose_todo_to_edit(index: number): void{
     this.isEditing$.next(index)
@@ -102,17 +138,14 @@ export class LogicService implements OnDestroy{
 
     if(response){
       if(new_task.length){
-        const todoToUpdate = this._todos.map((todo: Todo) => {
+        this._todos = this._todos.map((todo: Todo) => {
           if(todo.id === index){
-            return todo.task = new_task, todo.date = new_date
+            todo.task = new_task
+            todo.date = new_date
           }
-          else return todo
+          return todo
         });
-        // const todoToUpdate = this._todos.find(todo => {todo.id === index);
 
-        // if (todoToUpdate) {
-        //   todoToUpdate.task = new_task;
-        // }
       }
       else{
         this._todos = this._todos.filter((todo: Todo) => todo.id !== index);
@@ -122,6 +155,7 @@ export class LogicService implements OnDestroy{
       
       this.isEditing$.next(null)
       this.todos$.next(this._todos)
+      this.save_to_local_storage()
       return true
     }
     
@@ -133,6 +167,7 @@ export class LogicService implements OnDestroy{
     this._todos[index].checked = !this._todos[index].checked
     this.todos_quantity()
     this.filter_todos(this.filter_type)
+    this.save_to_local_storage()
   }
 
   private reArange(): void{
@@ -149,6 +184,7 @@ export class LogicService implements OnDestroy{
       this.reArange()
       this.todos_quantity()
       this.filter_todos(this.filter_type)
+      this.save_to_local_storage()
     }
   }
 
@@ -159,6 +195,7 @@ export class LogicService implements OnDestroy{
       this._todos = []
       this.todos$.next(this._todos)
       this.todos_quantity()
+      this.save_to_local_storage()
     }
   }
 
