@@ -9,11 +9,11 @@
     align-items: center;
     
     padding-block: 0.8rem;
-    padding-inline: $px;
+    padding-inline: var(--px);
     margin-bottom: 1rem;
 
     font-weight: 600;
-    color: $black;
+    color: var(--black);
 
     width: 100%;
 
@@ -47,7 +47,7 @@
 
         width: 100%;
         height: 2px;
-        background: $blueHSL;
+        background: var(--primaryColorHSL);
         opacity: 0.4;
     }
 
@@ -58,11 +58,9 @@
         }
 
         input[type="checkbox"]{
-            border: 2px solid $blue;
+            border: 2px solid var(--primaryColor);
         }
     }
-
-
 
 
     &-block{
@@ -84,7 +82,7 @@
             color: #fff;
         }       
         .submit-edited{
-            background: $blue !important;
+            background: var(--primaryColor) !important;
         }
         .cancel-editing{
             background: rgb(168, 16, 16) !important;
@@ -102,14 +100,14 @@
             transition: border 0.3s ease;
 
             &:focus{
-                outline: $outline;
+                outline: var(--outline);
             }
 
             border-radius: 5px;
-            border: 2px solid $textColor;
+            border: 2px solid var(--textColor);
             
             &:hover{
-                border: 2px solid $blue;
+                border: 2px solid var(--primaryColor);
             }
 
             &::after{
@@ -128,19 +126,19 @@
             }
 
             &:checked{
-                border: 2px solid $blue;
-                background: $blue;
+                border: 2px solid var(--primaryColor);
+                background: var(--primaryColor);
 
                 &::after{
-                    content: '\f00c';
+                    content: "\f00c";
                 }
 
 
                 & ~ .todo-name{
                     text-decoration: line-through;
                     text-decoration-thickness: 2px;
-                    text-decoration-color: $blue;
-                    color: $textColor;
+                    text-decoration-color: var(--primaryColor);
+                    color: var(--textColor);
                 }
             }
         }
@@ -171,8 +169,8 @@
 
 
         .todo-name{
-            max-width: $defaultTextLength;
-            color: $black;
+            max-width: var(--defaultTextLength);
+            color: var(--primary-text-color);
             text-overflow: ellipsis; /* Show an ellipsis (...) when text overflows */
             white-space: nowrap;
             // text-transform: capitalize;
@@ -211,7 +209,7 @@
             }
 
             .fa-copy{
-                color: $textColor;
+                color: var(--textColor);
             }
             .fa-trash{
                 color: rgb(226, 9, 9);
@@ -221,7 +219,7 @@
 }
 
 button:focus{
-    outline: $outline;
+    outline: var(--outline);
 }
 
   
@@ -231,7 +229,7 @@ button:focus{
 .additional-info{
     p{
         margin: 0;
-        color: $textColor;
+        color: var(--textColor);
     }
 
     display: flex;

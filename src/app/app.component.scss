@@ -1,16 +1,14 @@
-@import 'Styles/CustomStyles';
-
 .custom-container{
-    background: #fff;
+    background: var(--bg-color-secondary);
 
     width: 90%;
-    max-width: $containerWidth;
+    max-width: var(--containerWidth);
     height: auto;
 
     border-radius: 1rem;
     margin-inline: auto;
 
-    box-shadow: 0 5px 0 rgba(#d4d6dc, 1);
+    box-shadow: 0 5px 0 rgba(var(--btn-shadow), 1);
 
     padding-top: 1rem;
     margin-bottom: 2rem;

@@ -12,9 +12,36 @@
     box-sizing: border-box;
 }
 
-////////////////////////////////////
 /// End Basic styles
+
 ////////////////////////////////////
+// Custom variables
+////////////////////////////////////
+
+
+
+@each $color, $value in $theme-light {
+    :root {
+        --#{$color}: #{$value};
+    }
+}
+
+@each $parameter, $value in $other_variables {
+    :root {
+        --#{$parameter}: #{$value};
+    }
+}
+
+
+    
+@each $color, $value in $theme-dark {
+    body[data-bs-theme='dark']{
+        --#{$color}: #{$value};
+    }
+}
+
+
+// Custom variables
 
 
 ////////////////////////////////////
@@ -31,22 +58,20 @@
 
 ::-webkit-scrollbar-thumb {
     border-radius: 100vmax;
-    background: $blueHSL;
+    background: var(--primaryColorHSL);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: $blue;
+    background: var(--primaryColor);
 }
 
-////////////////////////////////////
 /// End Custom scroll bar
-////////////////////////////////////
 
 
 body{
     padding-top: 4vh;
     padding-top: 4dvh;
-    background: $bg-color !important;
+    background: var(--bg-color) !important;
 
     height: 100vh;
     height: 100dvh; // will ovveride
@@ -54,10 +79,20 @@ body{
 
 
 *:not(.title)::selection{
-    background:$blue;
+    background: var(--primaryColor);
     color: #fff;
 }
 
 *:not(i){
     font-family: 'Poppins', sans-serif;
+}
+
+body[data-bs-theme='dark']{
+    .todo-block-second{
+        opacity: 1 !important;
+    }
+
+    .todo::after{
+        background-image: linear-gradient(35deg, var(--cyan), var(--purple), var(--blue));
+    }
 }

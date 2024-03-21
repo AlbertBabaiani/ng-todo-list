@@ -10,7 +10,7 @@ export class ArrowsComponent implements OnInit{
   showScrollBottomButton = false;
 
   ngOnInit(): void {
-    this.onWindowScroll();
+    this.updateScrollButtons();
     
     // Create a MutationObserver to observe changes in the document body
     // const observer = new MutationObserver(() => {

@@ -1,19 +1,103 @@
 // Colors
 
+
 $bg-color: #f3f5f6;
 
 $blue: #2f74c0;
 $blueHSL: hsl(211, 50%, 60%);
+
 $black: #232b2b;
+$primary-text-color: #e0e0e0;
+
 $textColor: #b0b3b8;
+$textColor-dark-v: #c6c8cb;
+
 $gitHub: #4078c0;
 
 $purple: #c471ed;
+$dark-purple: #600080;
+$dark-purple-hsl: hsl(285, 100%, 20%);
 $cyan: #12c2e9;
 
-$colorTransition: color 0.2s ease;
+$label-color: $blue;
+$label-color-bg: #fff;
 
-$outline: 1.4px solid $blue;
+$label-color-dark: $primary-text-color;
+$label-color-dark-bg: #2b2a33;
+
+$btn-shadow: 212, 214, 220;
+$btn-shadow-dark: 47, 47, 52;
+
+
+$theme-light: (
+    bg-color: $bg-color,
+    bg-color-secondary: #fff,
+
+    blue: $blue,
+
+    primaryColor: $blue,
+    primaryColorHSL: $blueHSL,
+
+    black: $black,
+    primary-text-color: $black,
+    textColor: $textColor,
+
+    gitHub: $gitHub,
+
+    label-color: $label-color,
+    label-color-bg: $label-color-bg,
+
+    btn-shadow: $btn-shadow,
+
+    outline: 1.4px solid $blue,
+
+    purple: $purple,
+    cyan: $cyan
+);
+
+
+$theme-dark: (
+    bg-color: #292929,
+    bg-color-secondary: #121212,
+
+    primaryColor: $dark-purple,
+    primaryColorHSL: $dark-purple-hsl,
+
+    // black: $black,
+    primary-text-color: $primary-text-color,
+    textColor: $textColor-dark-v,
+
+    gitHub: $blue,
+
+    label-color: $label-color-dark,
+    label-color-bg: $label-color-dark-bg,
+
+    btn-shadow: $btn-shadow-dark,
+
+    outline: 1.4px solid #fff,
+
+    // purple: $purple,
+    // cyan: $cyan
+);
+
+
+
+
+$other_variables: (
+    colorTransition: color 0.2s ease,
+
+    containerWidth: 44rem,
+
+    px: 1.6rem,
+
+    rounded-sm: 0.4rem,
+
+    defaultTextLength: 30rem
+);
+
+
+
+$colorTransition: color 0.2s ease;
 
 // End Colors
 
@@ -25,22 +109,34 @@ $rounded-sm: 0.4rem;
 
 $defaultTextLength: 30rem;
 
+$outline: 1.4px solid $blue;
+
+
+
+
 @mixin activeLabel{
     top: 0%;
     left: 7%;
-    background: #fff;
-    color: $blue;
+    background: var(--label-color-bg);
+    color: var(--label-color);
 }
-
 
 
 
 $labelWidthsMap: (
     700px: 30rem,
-    590px: 24rem,
-    490px: 16rem,
-    360px: 13rem,
-    310px: 10rem
+    644px: 26rem,
+    582px: 23rem,
+    546px: 20rem,
+    482px: 18rem,
+    436px: 16rem,
+    403px: 14rem,
+    370px: 12rem,
+    332px: 11rem,
+    314px: 10rem,
+    300px: 9rem,
+    276px: 8rem,
+    260px: 6rem
 );
 
 @mixin labelWidths {

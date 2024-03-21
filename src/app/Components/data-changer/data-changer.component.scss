@@ -1,8 +1,5 @@
-@import '../../Styles/CustomStyles';
-
-
 .custom-container{
-    padding-inline: $px;
+    padding-inline: var(--px);
     margin-bottom: 1.8rem;
 
     display: flex;
@@ -18,7 +15,7 @@
 }
 
 label{
-    color: $textColor;
+    color: var(--textColor);
     font-size: 16px;
 }
 
@@ -27,8 +24,8 @@ select{
 }
 
 .btn{
-    background: $blue;
-    border-radius: $rounded-sm;
+    background: var(--primaryColor);
+    border-radius: var(--rounded-sm);
 }
 
 .clear-completed{
@@ -37,22 +34,22 @@ select{
                 box-shadow 0.3s;
 
     border: none;
-    background: #f3f3f7;
-    color: $textColor;
+    background: var(--bg-color);
+    color: var(--textColor);
 
     font-size: 0.9rem;
-    padding: 0.2rem 0.3rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 0.3rem;
 
     cursor: pointer;
     // transform: translateY(-3px);
-    box-shadow: 0 3px 0 0 #9ba0a7;
+    box-shadow: 0 3px 0 0 rgb(var(--btn-shadow));
 
     &:hover,
     &:focus{
         outline: none;
         transform: translateY(2px);
-        box-shadow: 0 1px 0 0 #9ba0a7;
+        box-shadow: 0 1px 0 0 rgb(var(--btn-shadow));
     }
 }
 

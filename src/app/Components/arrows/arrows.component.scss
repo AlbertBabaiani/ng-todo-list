@@ -1,5 +1,3 @@
-@import '../../Styles/CustomStyles';
-
 .arrows-container{
     position: fixed;
 
@@ -13,7 +11,7 @@
 
     span{
         cursor: pointer;
-        background: $blue;
+        background: var(--primaryColor);
         color: #fff;
 
         opacity: 0;
@@ -34,7 +32,7 @@
 
         &:hover,
         &:focus{
-            background: $blueHSL;
+            background: var(--primaryColorHSL);
         }
 
 

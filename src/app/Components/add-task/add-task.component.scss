@@ -1,7 +1,7 @@
 @import '../../Styles/CustomStyles';
 
 .custom-container{
-    padding-inline: $px;
+    padding-inline: var(--px);
     margin-bottom: 1.4rem;
 
     width: 100%;
@@ -24,7 +24,7 @@ form{
         }
     
         label{
-            color: $textColor;
+            color: var(--textColor);
 
     
             user-select: none;
@@ -50,10 +50,10 @@ form{
 
         input{
             width: 100%;
-            border: 2px solid #eee;
+            border: 2px solid var(--bg-color);
             
-            border-top-left-radius: $rounded-sm;
-            border-bottom-left-radius: $rounded-sm;
+            border-top-left-radius: var(--rounded-sm);
+            border-bottom-left-radius: var(--rounded-sm);
 
             height: 2.8rem;
             padding-inline: 5% 12%;
@@ -66,7 +66,7 @@ form{
 
             &:focus,
             &.active-input{
-                border: 2px solid $blue;
+                border: 2px solid var(--primaryColor);
                 box-shadow: 0 0 0 2px rgba($blue, 0.3);
             }
 
@@ -84,7 +84,7 @@ form{
             
             border: none;
             background: transparent;
-            color: $textColor;
+            color: var(--textColor);
             
             text-align: center;
             font-size: 0.9em;
@@ -94,12 +94,12 @@ form{
             
             &:focus,
             &:hover{
-                color: $black;
-                border-radius: $rounded-sm;
+                color: var(--primaryColor);
+                border-radius: var(--rounded-sm);
             }
             
             &:focus{
-                outline: $outline;
+                outline: var(--outline);
             }
         }
     }
@@ -109,22 +109,22 @@ form{
         // width: 10%;
         width: 4rem;
 
-        border: 2px solid $blue;
-        background: $blue;
+        border: 2px solid var(--primaryColor);
+        background: var(--primaryColor);
 
         
         color: #fff;
         
-        border-top-right-radius: $rounded-sm;
-        border-bottom-right-radius: $rounded-sm;
+        border-top-right-radius: var(--rounded-sm);
+        border-bottom-right-radius: var(--rounded-sm);
         
         transition: background 0.3s ease, border-color 0.3s ease;
         
         &:focus,
         &:hover{
             outline: none;
-            background: $blueHSL;
-            border-color:  $blueHSL;
+            background: var(--primaryColorHSL);
+            border-color:  var(--primaryColorHSL);
         }
     }
 }
@@ -138,12 +138,12 @@ form{
         width: 100%;
 
         input{
-            border-radius: $rounded-sm;
+            border-radius: var(--rounded-sm);
         }
       }
 
       button[type="button"]{
-        border-radius: $rounded-sm;
+        border-radius: var(--rounded-sm);
         height: 2.8rem;
         width: 100%;
         font-size: 1.1rem;

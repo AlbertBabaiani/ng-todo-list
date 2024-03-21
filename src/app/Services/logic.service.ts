@@ -20,8 +20,12 @@ export class LogicService implements OnDestroy{
 
   private filter_type: string | null | undefined = 'All'
 
+  private dark_theme: boolean = false
+  private dark_theme_key: string = 'ng-user-list-theme'
+
   constructor() {
     this.load_local_storage()
+    this.load_theme()
 
     this.activated_route_subscription = this.activated_route.queryParamMap.subscribe({
       next: (query: ParamMap) => {
@@ -55,6 +59,35 @@ export class LogicService implements OnDestroy{
 
   private save_to_local_storage(): void{
     localStorage.setItem(this.local_storage_key, JSON.stringify(this._todos))
+  }
+
+  private load_theme(): void{
+    const local_storage = localStorage.getItem(this.dark_theme_key)
+    console.log(local_storage)
+
+    if(local_storage === null || local_storage === undefined){
+      this.dark_theme = false
+    }
+    else{
+      this.dark_theme = Boolean(JSON.parse(local_storage))
+    }
+
+    this.change_theme(this.dark_theme)
+  }
+
+  get get_theme(): boolean{
+    return this.dark_theme
+  }
+
+  change_theme(dark_theme: boolean): void{
+    this.dark_theme = dark_theme
+    if(this.dark_theme){
+      document.body.removeAttribute('data-bs-theme')
+    }
+    else{
+      document.body.setAttribute('data-bs-theme', 'dark')
+    }
+    localStorage.setItem(this.dark_theme_key, JSON.stringify(this.dark_theme))
   }
 
   private calculate_todos_quantity(): [number, number, number]{

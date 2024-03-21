@@ -1,7 +1,5 @@
-@import '../../Styles/CustomStyles';
-
 header{
-    padding-inline: $px;
+    padding-inline: var(--px);
 }
 
 .header{
@@ -14,7 +12,7 @@ header{
         padding-block: 0.3rem;
         margin: 0;
     
-        background-image: linear-gradient(35deg, $cyan, $purple, $blue);
+        background-image: linear-gradient(35deg, var(--cyan), var(--purple), var(--blue));
         background-position: center;
         animation: bodyAnimation 4s ease 0s infinite alternate;
         background-size: 200% 200%;
@@ -33,17 +31,17 @@ header{
 
     a{
         font-weight: bold;
-        color: $gitHub;
+        color: var(--gitHub);
 
-        transition: $colorTransition;
+        transition: var(--colorTransition);
 
         &:focus{
-            outline: $outline;
+            outline: var(--outline);
         }
 
         &:hover,
         &:focus{
-            color: $blue;
+            color: var(--blue);
         }
     }
 }
