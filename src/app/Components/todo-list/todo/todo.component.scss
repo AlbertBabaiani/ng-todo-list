@@ -1,4 +1,28 @@
-@import '../../../Styles/CustomStyles';
+$labelWidthsMap: (
+    700px: 30rem,
+    644px: 26rem,
+    582px: 23rem,
+    546px: 20rem,
+    482px: 18rem,
+    436px: 16rem,
+    403px: 14rem,
+    370px: 12rem,
+    332px: 11rem,
+    314px: 10rem,
+    300px: 9rem,
+    276px: 8rem,
+    260px: 6rem
+);
+
+@mixin labelWidths {
+    @each $width, $maxWidth in $labelWidthsMap {
+        @media (max-width: $width) {
+            .todo .todo-block, .todo-name {
+                max-width: $maxWidth;
+            }
+        }
+    }
+}
 
 .todo{
 
@@ -34,11 +58,6 @@
         }
     }
 
-    &.deleted-todo{
-        opacity: 0.3;
-        transform: translateX(-120%);
-    }
-
     &::after{
         content: '';
         position: absolute;
@@ -62,7 +81,6 @@
         }
     }
 
-
     &-block{
         display: flex;
         gap: 1rem;
@@ -71,8 +89,6 @@
         &.todo-block-first{
             width: 100%;
         }
-
-
 
         .submit-edited,
         .cancel-editing{

@@ -81,11 +81,21 @@ export class LogicService implements OnDestroy{
 
   change_theme(dark_theme: boolean): void{
     this.dark_theme = dark_theme
+    const metaTag = document.querySelector('meta[name="theme-color"]');
+
     if(this.dark_theme){
       document.body.removeAttribute('data-bs-theme')
+
+      if (metaTag) {
+        metaTag.setAttribute('content', '#2f74c0')
+      }
     }
     else{
       document.body.setAttribute('data-bs-theme', 'dark')
+
+      if (metaTag) {
+        metaTag.setAttribute('content', '#292929')
+      }
     }
     localStorage.setItem(this.dark_theme_key, JSON.stringify(this.dark_theme))
   }

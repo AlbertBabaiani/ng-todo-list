@@ -57,7 +57,7 @@ $theme-light: (
 
 
 $theme-dark: (
-    bg-color: #292929,
+    bg-color: #222,
     bg-color-secondary: #121212,
 
     primaryColor: $dark-purple,
@@ -119,32 +119,4 @@ $outline: 1.4px solid $blue;
     left: 7%;
     background: var(--label-color-bg);
     color: var(--label-color);
-}
-
-
-
-$labelWidthsMap: (
-    700px: 30rem,
-    644px: 26rem,
-    582px: 23rem,
-    546px: 20rem,
-    482px: 18rem,
-    436px: 16rem,
-    403px: 14rem,
-    370px: 12rem,
-    332px: 11rem,
-    314px: 10rem,
-    300px: 9rem,
-    276px: 8rem,
-    260px: 6rem
-);
-
-@mixin labelWidths {
-    @each $width, $maxWidth in $labelWidthsMap {
-        @media (max-width: $width) {
-            .todo .todo-block, .todo-name {
-                max-width: $maxWidth;
-            }
-        }
-    }
 }
