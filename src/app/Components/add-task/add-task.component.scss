@@ -1,4 +1,10 @@
-@import '../../Styles/CustomStyles';
+@mixin activeLabel{
+    top: 0%;
+    left: 7%;
+    background: var(--label-color-bg);
+    color: var(--label-color);
+}
+
 
 .custom-container{
     padding-inline: var(--px);
@@ -67,7 +73,7 @@ form{
             &:focus,
             &.active-input{
                 border: 2px solid var(--primaryColor);
-                box-shadow: 0 0 0 2px rgba($blue, 0.3);
+                box-shadow: 0 0 0 2px rgba(#2f74c0, 0.3);
             }
 
 

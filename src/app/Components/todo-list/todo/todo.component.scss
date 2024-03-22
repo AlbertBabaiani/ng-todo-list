@@ -1,6 +1,6 @@
 $labelWidthsMap: (
     700px: 30rem,
-    644px: 26rem,
+    660px: 26rem,
     582px: 23rem,
     546px: 20rem,
     482px: 18rem,
@@ -8,10 +8,8 @@ $labelWidthsMap: (
     403px: 14rem,
     370px: 12rem,
     332px: 11rem,
-    314px: 10rem,
-    300px: 9rem,
-    276px: 8rem,
-    260px: 6rem
+    314px: 9rem,
+    276px: 6rem
 );
 
 @mixin labelWidths {

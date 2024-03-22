@@ -114,9 +114,3 @@ $outline: 1.4px solid $blue;
 
 
 
-@mixin activeLabel{
-    top: 0%;
-    left: 7%;
-    background: var(--label-color-bg);
-    color: var(--label-color);
-}
