@@ -17,7 +17,10 @@
           </div>
           
           <textarea class="update-todo rounded" #updateTodo
-          (input)="riseArea(updateTodo)">{{ todo.task }}</textarea>
+          (input)="riseArea(updateTodo)"
+          (keydown)="submit_editing_ctrl_s($event)">
+            {{ todo.task }}
+          </textarea>
         </div>
         
         <div class="additional-info mt-2" *ngIf="isEditing">

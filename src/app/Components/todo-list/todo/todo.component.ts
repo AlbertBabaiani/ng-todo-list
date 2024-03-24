@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Todo } from 'src/app/Models/ToDo';
 import { LogicService } from 'src/app/Services/logic.service';
@@ -65,6 +65,21 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     }
   }
 
+  submit_editing_ctrl_s(event: KeyboardEvent) {
+    const focusedElement = document.activeElement as HTMLElement;
+    
+    if (event.ctrlKey && event.key === 's' &&
+        focusedElement.tagName === 'TEXTAREA' &&
+        this.isEditing) {
+
+          event.preventDefault();
+
+          if(!this.sameTextOrNot){
+            this.submit_editing();
+          }
+    }
+  }
+
   cancel_editing(): void{
     this.isEditing = false
     this.sameTextOrNot = true
@@ -113,10 +128,13 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
         const inputElement = this.updateTodoInput.nativeElement;
         inputElement.focus();
         inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
+
+        this.updateTodoInput.nativeElement.style.height = '';
+        this.updateTodoInput.nativeElement.style.height = (this.updateTodoInput.nativeElement.scrollHeight + 2) + 'px';
       }
     }
   }
-
+  
   ngOnDestroy(): void {
     if(this.isEditing_subscription){
       this.isEditing_subscription.unsubscribe()
