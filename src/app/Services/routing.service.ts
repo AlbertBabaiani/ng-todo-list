@@ -73,7 +73,6 @@ export class RoutingService implements OnDestroy{
   }
 
   private check_all_queries(queryParams: ParamMap): boolean{
-    console.log(queryParams)
     return queryParams.keys.every((query: string) => {
       return query === 'Filter' || query === '' || query === null || query === undefined;
     });
@@ -89,7 +88,6 @@ export class RoutingService implements OnDestroy{
       return null
     }
     else{
-      console.log('NOOOOOO')
       return false
     }
   }
