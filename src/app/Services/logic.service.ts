@@ -66,7 +66,11 @@ export class LogicService implements OnDestroy{
     // console.log(local_storage)
 
     if(local_storage === null || local_storage === undefined){
-      this.dark_theme = false
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+       this.dark_theme = true
+      } else {
+        this.dark_theme = false
+      }
     }
     else{
       this.dark_theme = Boolean(JSON.parse(local_storage))
