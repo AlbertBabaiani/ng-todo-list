@@ -4,7 +4,9 @@
 
     top: var(--px);
     right: var(--px);
-    // transform: translateX(-50%);
+
+    margin-top: calc(var(--px) - 1rem);
+    margin-bottom: 0.5rem;
 }
 
 /* The switch - the box around the slider */
