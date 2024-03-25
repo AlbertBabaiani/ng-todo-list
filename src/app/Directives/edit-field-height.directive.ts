@@ -15,7 +15,8 @@ export class EditFieldHeightDirective {
   @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
   onMouseDown(event: MouseEvent | TouchEvent) {
-    if (!this.isEditing) return;
+    if (!this.isEditing || !this.isResizeElement(event)) return;
+    event.preventDefault()
     this.resizing = true;
     this.startY = this.getClientY(event);
     this.startHeight = this.elementRef.nativeElement.offsetHeight;
@@ -24,9 +25,8 @@ export class EditFieldHeightDirective {
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
   onMouseMove(event: MouseEvent | TouchEvent) {
-    if (!this.isEditing) return;
-    if (!this.resizing) return;
-    event.preventDefault();
+    if (!this.isEditing || !this.resizing) return;
+    event.preventDefault()
     const deltaY = this.getClientY(event) - this.startY;
     this.elementRef.nativeElement.style.height = this.startHeight + deltaY + 'px';
   }
@@ -45,5 +45,10 @@ export class EditFieldHeightDirective {
       return event.touches[0].clientY;
     }
     return 0;
+  }
+
+  isResizeElement(event: MouseEvent | TouchEvent): boolean {
+    const target = event.target as HTMLElement;
+    return target.classList.contains('resize-element');
   }
 }
