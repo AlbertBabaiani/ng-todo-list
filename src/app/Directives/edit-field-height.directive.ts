@@ -4,7 +4,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
   selector: '[appEditFieldHeight]'
 })
 export class EditFieldHeightDirective {
-  @Input('appEditFieldHeight') isEditing!: boolean
+  @Input('appEditFieldHeight') isEditing!: boolean;
 
   startY!: number;
   startHeight!: number;
@@ -13,24 +13,36 @@ export class EditFieldHeightDirective {
   constructor(private elementRef: ElementRef) {}
 
   @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
+  @HostListener('touchstart', ['$event'])
+  onMouseDown(event: MouseEvent | TouchEvent) {
     if (!this.isEditing) return;
     this.resizing = true;
-    this.startY = event.clientY;
+    this.startY = this.getClientY(event);
     this.startHeight = this.elementRef.nativeElement.offsetHeight;
   }
 
   @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
+  @HostListener('document:touchmove', ['$event'])
+  onMouseMove(event: MouseEvent | TouchEvent) {
     if (!this.isEditing) return;
     if (!this.resizing) return;
-    const deltaY = event.clientY - this.startY;
+    const deltaY = this.getClientY(event) - this.startY;
     this.elementRef.nativeElement.style.height = this.startHeight + deltaY + 'px';
   }
 
   @HostListener('document:mouseup')
+  @HostListener('document:touchend')
   onMouseUp() {
     if (!this.isEditing) return;
     this.resizing = false;
+  }
+
+  getClientY(event: MouseEvent | TouchEvent): number {
+    if (event instanceof MouseEvent) {
+      return event.clientY;
+    } else if (event instanceof TouchEvent) {
+      return event.touches[0].clientY;
+    }
+    return 0;
   }
 }
