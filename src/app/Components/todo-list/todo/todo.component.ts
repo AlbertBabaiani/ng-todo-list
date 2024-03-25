@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Todo } from 'src/app/Models/ToDo';
 import { LogicService } from 'src/app/Services/logic.service';
@@ -9,12 +9,13 @@ import { SweetAlert2PopUpsService } from 'src/app/Services/sweet-alert2-pop-ups.
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
-export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
+export class TodoComponent implements OnInit, OnDestroy{
   private service: LogicService = inject(LogicService)
   private sweetAlert: SweetAlert2PopUpsService = inject(SweetAlert2PopUpsService)
 
 
   @ViewChild('updateTodo', { static: false }) updateTodoInput!: ElementRef
+  @ViewChild('li', { static: false }) li!: ElementRef
 
   @Input() todo!: Todo
 
@@ -62,6 +63,8 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     if(response){ 
       this.isEditing = false
       this.sameTextOrNot = false
+
+      this.li_default_height()
     }
   }
 
@@ -83,9 +86,17 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
   cancel_editing(): void{
     this.isEditing = false
     this.sameTextOrNot = true
+
+    this.li_default_height()
   }
 
-  riseArea(area: HTMLTextAreaElement): void{
+  private li_default_height(): void{
+    if(this.li){
+      this.li.nativeElement.style.height = 'auto'
+    }
+  }
+
+  change_additional_info(area: HTMLTextAreaElement): void{
     this.editingText_length = area.value.trim().length
 
     if(area.value.trim() !== this.todo.task){
@@ -93,11 +104,6 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     }
     else{
       this.sameTextOrNot = true
-    }
-
-    if(!this.resized){
-      area.style.height = '';
-      area.style.height = (area.scrollHeight + 2) + 'px';
     }
   }
 
@@ -120,20 +126,19 @@ export class TodoComponent implements OnInit, AfterViewChecked, OnDestroy{
     btn.blur()
   }
 
-  ngAfterViewChecked(): void {
-    if (this.isEditing) {
-      // this.updateTodoInput.nativeElement.focus();
+  // ngAfterViewChecked(): void {
+  //   console.log('gg')
+  //   if (this.isEditing) {
+  //     // this.updateTodoInput.nativeElement.focus();
 
-      if(this.updateTodoInput){
-        const inputElement = this.updateTodoInput.nativeElement;
-        inputElement.focus();
-        inputElement.selectionStart = inputElement.selectionEnd = inputElement.value.length;
+  //     if(this.updateTodoInput){
 
-        this.updateTodoInput.nativeElement.style.height = '';
-        this.updateTodoInput.nativeElement.style.height = (this.updateTodoInput.nativeElement.scrollHeight + 2) + 'px';
-      }
-    }
-  }
+
+  //       this.updateTodoInput.nativeElement.style.height = '';
+  //       this.updateTodoInput.nativeElement.style.height = (this.updateTodoInput.nativeElement.scrollHeight + 2) + 'px';
+  //     }
+  //   }
+  // }
   
   ngOnDestroy(): void {
     if(this.isEditing_subscription){

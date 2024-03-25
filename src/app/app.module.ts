@@ -18,6 +18,8 @@ import { ToDoEditingDirective } from './Directives/to-do-editing.directive';
 import { DataChangerComponent } from './Components/data-changer/data-changer.component';
 import { ArrowsComponent } from './Components/arrows/arrows.component';
 import { ThemeChangerComponent } from './Components/theme-changer/theme-changer.component';
+import { ToDoFocusDirective } from './Directives/to-do-focus.directive';
+import { EditFieldHeightDirective } from './Directives/edit-field-height.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { ThemeChangerComponent } from './Components/theme-changer/theme-changer.
      DataChangerComponent,
      ArrowsComponent,
      ThemeChangerComponent,
+     ToDoFocusDirective,
+     EditFieldHeightDirective,
   ],
   imports: [
     FormsModule,

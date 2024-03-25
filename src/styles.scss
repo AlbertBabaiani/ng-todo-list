@@ -92,7 +92,8 @@ body[data-bs-theme='dark']{
         opacity: 1 !important;
     }
 
-    .todo::after{
-        background-image: linear-gradient(35deg, var(--cyan), var(--purple), var(--blue));
+    .todo{
+        border-image: linear-gradient(35deg, rgba($cyan, 0.4), rgba($blue, 0.4), rgba($dark-purple, 0.4));
+        border-image-slice: 0 0 100% 0;
     }
 }
