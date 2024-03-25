@@ -14,14 +14,21 @@ export class AddTaskComponent implements AfterViewInit{
   @ViewChild('label') label!: ElementRef
   @ViewChild('input') input!: ElementRef
 
-  addTodo(): void{
+  addTodo(btn?: HTMLButtonElement): void{
     const trimed_searched: string = this.search.trim()
+
+    if(btn){
+      btn.blur()
+      this.blur_for_phone()
+    }
 
     if(trimed_searched){
       const respone =  this.service.addNewTodo(trimed_searched)
 
       if(respone){
         this.search = ''
+
+        
       }
     }
   }
@@ -44,7 +51,7 @@ export class AddTaskComponent implements AfterViewInit{
     this.input.nativeElement.focus()
   }
 
-  fun(): void{
-    console.log('sdd')
+  blur_for_phone(): void{
+    document.body.focus()
   }
 }
