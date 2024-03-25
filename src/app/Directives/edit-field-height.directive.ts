@@ -26,6 +26,7 @@ export class EditFieldHeightDirective {
   onMouseMove(event: MouseEvent | TouchEvent) {
     if (!this.isEditing) return;
     if (!this.resizing) return;
+    event.preventDefault();
     const deltaY = this.getClientY(event) - this.startY;
     this.elementRef.nativeElement.style.height = this.startHeight + deltaY + 'px';
   }
