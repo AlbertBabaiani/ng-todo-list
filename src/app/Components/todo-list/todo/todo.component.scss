@@ -1,4 +1,6 @@
-
+.todo .todo-block, .todo-name {
+    max-width: calc(100% - 4.6rem) !important;
+}
 
 .todo{
     position: relative;
@@ -162,11 +164,9 @@
 
 
         .todo-name{
-            max-width: var(--defaultTextLength);
             color: var(--primary-text-color);
-            text-overflow: ellipsis; /* Show an ellipsis (...) when text overflows */
+            text-overflow: ellipsis;
             white-space: nowrap;
-            // text-transform: capitalize;
 
             cursor: pointer;
             text-align: start;
@@ -214,9 +214,6 @@
 button:focus{
     outline: var(--outline);
 }
-
-  
-// @include labelWidths;
 
 
 .additional-info{
