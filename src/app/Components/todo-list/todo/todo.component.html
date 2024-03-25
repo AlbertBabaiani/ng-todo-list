@@ -1,4 +1,5 @@
-<li class="todo" [appToDoEditing]="isEditing" [appEditFieldHeight]="isEditing" #li>
+<li class="todo d-flex justify-content-between align-items-center w-100"
+  [appToDoEditing]="isEditing" [appEditFieldHeight]="isEditing" #li>
 
     <div class="todo-block todo-block-first">
       <input type="checkbox" [checked]="todo.checked" (click)="check_uncheck()" *ngIf="!isEditing">
@@ -6,7 +7,7 @@
         (click)="textTransform(task_name)" (dblclick)="edit()"> {{ todo.task }} </label>
 
 
-      <div *ngIf="isEditing" class="w-100 editing-box-main">
+      <div *ngIf="isEditing" class="w-100 d-flex flex-column justify-content-between">
         <div class="w-100 h-100 d-flex editing-box">
 
           
@@ -29,7 +30,7 @@
     </div>
 
 
-    <div class="todo-block todo-block-second">
+    <div class="todo-block todo-block-second" *ngIf="!isEditing">
       <button type="button"  #btn title="Copy" (click)="copy_task_name(btn)">
         <i class="fa-regular fa-copy"></i>
       </button>
