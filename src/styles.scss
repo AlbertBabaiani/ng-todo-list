@@ -73,8 +73,8 @@ body{
     padding-top: 4dvh;
     background: var(--bg-color) !important;
 
-    height: 100vh;
-    height: 100dvh; // will ovveride
+    min-height: 100vh;
+    min-height: 100dvh; // will ovveride
 }
 
 
