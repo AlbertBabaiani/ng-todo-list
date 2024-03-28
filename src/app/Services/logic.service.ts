@@ -63,7 +63,7 @@ export class LogicService implements OnDestroy{
 
   private load_theme(): void{
     const local_storage = localStorage.getItem(this.dark_theme_key)
-    // console.log(local_storage)
+
 
     if(local_storage === null || local_storage === undefined){
       if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
