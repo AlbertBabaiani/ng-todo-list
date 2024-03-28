@@ -109,23 +109,38 @@
                 content: '';
                 pointer-events: none;
                 user-select: none;
-
-                position: absolute;
-                top: 60%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                font-family: "Font Awesome 5 Free";
-                font-size: 0.8rem;
-                font-weight: 900;
-                color: #fff;
             }
 
             &:checked{
                 border: 2px solid var(--primaryColor);
                 background: var(--primaryColor);
 
+                &::after,
+                &::before{
+                    content: "";
+
+                    bottom: 10%;
+                    left: 42%;
+
+                    transform: translateX(-100%);
+                    transform-origin: right center;
+
+                    position: absolute;
+                    height: 2px;
+
+                    border-radius: 100vmax;
+
+                    background: #fff;
+                }
+
+                &::before{
+                    width: 6px;
+                    transform: translateX(-100%) rotate(45deg);
+                }
+
                 &::after{
-                    content: "\f00c";
+                    width: 11px;
+                    transform: translateX(-108%) rotate(135deg);
                 }
 
 
@@ -203,11 +218,11 @@
                 }
             }
 
-            .fa-copy{
-                color: var(--textColor);
+            .copy-icon{
+                fill: var(--textColor);
             }
-            .fa-trash{
-                color: rgb(226, 9, 9);
+            .delete-icon{
+                fill: rgb(226, 9, 9);
             }
         }
     }    

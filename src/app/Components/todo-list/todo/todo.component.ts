@@ -126,20 +126,6 @@ export class TodoComponent implements OnInit, OnDestroy{
     btn.blur()
   }
 
-  // ngAfterViewChecked(): void {
-  //   console.log('gg')
-  //   if (this.isEditing) {
-  //     // this.updateTodoInput.nativeElement.focus();
-
-  //     if(this.updateTodoInput){
-
-
-  //       this.updateTodoInput.nativeElement.style.height = '';
-  //       this.updateTodoInput.nativeElement.style.height = (this.updateTodoInput.nativeElement.scrollHeight + 2) + 'px';
-  //     }
-  //   }
-  // }
-  
   ngOnDestroy(): void {
     if(this.isEditing_subscription){
       this.isEditing_subscription.unsubscribe()
