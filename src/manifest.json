@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+
+    "name": "ng-Todo List",
+
+    "description": "Explore ng-todo-list, an intuitive Angular application for efficient task management. Organize your tasks effortlessly, add, edit, and delete tasks with ease, and filter them for streamlined productivity. Discover a powerful yet user-friendly todo list solution built with Angular.",
+
+    "version": "1.0.0",
+
+    "action": {
+        "default_popup": "index.html"
+    },
+
+    "host_permissions": [
+        "http://*/*",
+        "https://*/*",
+        "*://*/*"
+    ]
+}
